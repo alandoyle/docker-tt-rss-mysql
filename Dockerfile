@@ -1,5 +1,5 @@
 #Dockerfile.
-FROM ubuntu:jammy
+FROM ubuntu:noble
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
@@ -22,7 +22,7 @@ RUN sed -i -e 's/;\(clear_env\) = .*/\1 = no/i' \
 		-e 's/^\(user\|group\) = .*/\1 = app/i' \
 		-e 's/;\(php_admin_value\[error_log\]\) = .*/\1 = \/tmp\/error.log/' \
 		-e 's/;\(php_admin_flag\[log_errors\]\) = .*/\1 = on/' \
-        /etc/php/8.1/fpm/pool.d/www.conf
+        /etc/php/8.3/fpm/pool.d/www.conf
 RUN mkdir -p ${SCRIPT_ROOT}/config.d /etc/nginx/global /var/www/tt-rss
 
 # Configure Image
@@ -39,7 +39,7 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log \
-	&& ln -sf /dev/stderr /var/log/php8.1-fpm.log
+	&& ln -sf /dev/stderr /var/log/php8.3-fpm.log
 
 # HTTP
 EXPOSE 80/tcp
@@ -69,8 +69,8 @@ ENV TTRSS_PLUGINS="auth_internal, note, nginx_xaccel"
 
 ENV TTRSS_FEED_UPDATE_CHECK=900
 
-ENV OWNER_UID=1000
-ENV OWNER_GID=1000
+ENV OWNER_UID=1001
+ENV OWNER_GID=1001
 
 ENV PHP_WORKER_MAX_CHILDREN=5
 ENV PHP_WORKER_MEMORY_LIMIT=256M
