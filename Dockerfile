@@ -9,7 +9,7 @@ VOLUME /var/www/html
 VOLUME ${SCRIPT_ROOT}/config.d
 
 # Install software
-RUN apt-get -qq update -y && apt-get -qq upgrade -y && apt-get -qq install git curl sudo -y
+RUN apt-get -qq update -y && apt-get -qq upgrade -y && apt-get -qq install git curl sudo dos2unix -y
 RUN apt-get -qq install nginx-core -y
 RUN apt-get -qq install php php-fpm php-common php-apcu \
     php-gd php-pgsql php-pdo-mysql php-xml php-opcache \
@@ -28,13 +28,25 @@ RUN mkdir -p ${SCRIPT_ROOT}/config.d /etc/nginx/global /var/www/tt-rss
 # Configure Image
 COPY app/config.docker.php ${SCRIPT_ROOT}
 COPY app/update-feeds.sh ${SCRIPT_ROOT}
-RUN chmod 755 ${SCRIPT_ROOT}/update-feeds.sh
 
 COPY config/README.md ${SCRIPT_ROOT}/config.d
 COPY config/php.conf /etc/nginx/global
 COPY config/restrictions.conf /etc/nginx/global
 COPY config/nginx.conf /etc/nginx/sites-enabled/default
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+COPY app/startup.sh /startup.sh
+
+# Ensure UNIX Line Endings
+RUN dos2unix /etc/nginx/global/*
+RUN dos2unix /etc/nginx/sites-enabled/default
+RUN dos2unix /etc/supervisor/conf.d/supervisord.conf
+RUN dos2unix ${SCRIPT_ROOT}/*
+RUN dos2unix /startup.sh
+
+# Set Permissions
+RUN chmod 755 ${SCRIPT_ROOT}/update-feeds.sh
+RUN chmod 755 /startup.sh
 
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -77,9 +89,6 @@ ENV PHP_WORKER_MEMORY_LIMIT=256M
 
 ENV SIMPLE_UPDATE_MODE=false
 ENV SINGLE_USER_MODE=false
-
-COPY app/startup.sh /startup.sh
-RUN chmod 755 /startup.sh
 
 CMD ["/startup.sh"]
 

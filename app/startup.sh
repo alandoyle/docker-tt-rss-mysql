@@ -2,7 +2,7 @@
 #
 # Based in part on the original TT-RSS Docker startup.sh
 #
-
+echo "Starting TT-RSS (MySQL)"
 while ! mysqladmin ping -h $TTRSS_DB_HOST -u $TTRSS_DB_USER -p$TTRSS_DB_PASS; do
 	echo waiting until $TTRSS_DB_HOST is ready...
 	sleep 3
