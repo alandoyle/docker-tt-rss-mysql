@@ -94,8 +94,6 @@ docker run --name=tt-rss-mysql \
 Docker compose example:
 
 ```yaml
-version: "3"
-
 services:
   mysql:
     image: mysql:8.0
