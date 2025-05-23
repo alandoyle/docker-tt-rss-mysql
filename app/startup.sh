@@ -18,20 +18,24 @@ if ! id app >/dev/null 2>&1; then
    usermod -aG www-data,app app
 fi
 
+# Clean up old web install
+if [ ! -f $DST_DIR/.version ] ; then
+    echo cleaning up old files from $DST_DIR...
+    rm -rf $DST_DIR/.* || true
+    rm -rf $DST_DIR/* || true
+fi
+
+# Clone GIT and Hard Reset to last MySQL supported version
 if [ ! -d $DST_DIR/.git ]; then
-	mkdir -p $DST_DIR
-	chown $OWNER_UID:$OWNER_GID $DST_DIR
+        chown $OWNER_UID:$OWNER_GID $DST_DIR
 
-	echo cloning tt-rss source from $SRC_REPO to $DST_DIR...
-	sudo -u app git clone --depth 1 $SRC_REPO $DST_DIR || echo error: failed to clone master repository.
+        echo cloning tt-rss source from $SRC_REPO to $DST_DIR...
+        sudo -u app git clone $SRC_REPO $DST_DIR || echo error: failed to clone master repository.
+    cd $DST_DIR  && \
+        sudo -u app git reset --hard 0e4b8bd6538f3062d34a3a06ab5531c70042de78
+    echo 0e4b8bd6538f3062d34a3a06ab5531c70042de78 > $DST_DIR/.version
 else
-	echo updating tt-rss source in $DST_DIR from $SRC_REPO...
-
-	chown -R $OWNER_UID:$OWNER_GID $DST_DIR
-	cd $DST_DIR && \
-		sudo -u app git config core.filemode false && \
-		sudo -u app git config pull.rebase false && \
-		sudo -u app git pull origin master || echo error: unable to update master repository.
+    echo "git: already at last supported MySQL version of tt-rss"
 fi
 
 update-ca-certificates || true
