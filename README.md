@@ -1,3 +1,8 @@
+
+ARCHIVED as MySQL support was removed from TT-RSS on 28th April 2025 (https://git.tt-rss.org/fox/tt-rss.git/commit/?id=4cb8a84df46d46bc325b6638defbdc4dc34151ed)
+
+---
+
 # alandoyle/tt-rss-mysql
 
 ![Tiny Tiny RSS](https://community.tt-rss.org/uploads/default/optimized/1X/18a2e96275d1fffb21cce225d30a87be4544db60_2_180x180.png)
