@@ -14,7 +14,7 @@ This is a Docker container for [TT-RSS (MySQL)](https://tt-rss.org/).
 
 ---
 
-[![TT-RSS (MySQL) logo](https://images.weserv.nl/?url=raw.githubusercontent.com/alandoyle/docker-tt-rss-mysql/main/TT-RSS-logo.png&w=110)](https://tt-rss.org/)[![TT-RSS (MySQL)](https://images.placeholders.dev/?width=420&height=110&fontFamily=monospace&fontWeight=400&fontSize=52&text=TT-RSS (MySQL)&bgColor=rgba(0,0,0,0.0)&textColor=rgba(121,121,121,1))](https://tt-rss.org/)
+[![TT-RSS (MySQL) logo](https://images.weserv.nl/?url=raw.githubusercontent.com/alandoyle/docker-tt-rss-mysql/main/TTRSS-logo.png&w=110)](https://tt-rss.org/)[![TT-RSS (MySQL)](https://images.placeholders.dev/?width=420&height=110&fontFamily=monospace&fontWeight=400&fontSize=52&text=TT-RSS%20(MySQL)&bgColor=rgba(0,0,0,0.0)&textColor=rgba(121,121,121,1))](https://tt-rss.org/)
 
 A simple Tiny Tiny RSS image which only supports MySQL with integrated feed updates.
 
