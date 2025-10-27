@@ -5,9 +5,16 @@
 
 ---
 
-# alandoyle/tt-rss-mysql
+# Docker container for TT-RSS (MySQL)
+[![Docker Image Size](https://img.shields.io/docker/image-size/alandoyle/tt-rss-mysql/latest?logo=docker&style=for-the-badge)](https://hub.docker.com/r/alandoyle/tt-rss-mysql/tags)
+[![Docker Pulls](https://img.shields.io/docker/pulls/alandoyle/tt-rss-mysql?label=Pulls&logo=docker&style=for-the-badge)](https://hub.docker.com/r/alandoyle/tt-rss-mysql)
+[![Source](https://img.shields.io/badge/Source-GitHub-blue?logo=github&style=for-the-badge)](https://github.com/alandoyle/docker-tt-rss-mysql)
 
-![Tiny Tiny RSS](https://community.tt-rss.org/uploads/default/optimized/1X/18a2e96275d1fffb21cce225d30a87be4544db60_2_180x180.png)
+This is a Docker container for [TT-RSS (MySQL)](https://tt-rss.org/).
+
+---
+
+[![TT-RSS (MySQL) logo](https://images.weserv.nl/?url=raw.githubusercontent.com/alandoyle/docker-tt-rss-mysql/main/TT-RSS-logo.png&w=110)](https://tt-rss.org/)[![TT-RSS (MySQL)](https://images.placeholders.dev/?width=420&height=110&fontFamily=monospace&fontWeight=400&fontSize=52&text=TT-RSS (MySQL)&bgColor=rgba(0,0,0,0.0)&textColor=rgba(121,121,121,1))](https://tt-rss.org/)
 
 A simple Tiny Tiny RSS image which only supports MySQL with integrated feed updates.
 
@@ -15,7 +22,8 @@ A simple Tiny Tiny RSS image which only supports MySQL with integrated feed upda
 + Built in Feed updating.
 + Built-in TT-RSS updating.
 
-----
+---
+
 ## IMPORTANT NOTES
 
 This Docker image has several assumptions/prerequisites which need to be  fulfilled, ignoring them *will* bring failure.
@@ -80,7 +88,7 @@ WHERE guid LIKE '%"uid":"%"%';
 ```
 ----
 
-## Docker 
+## Docker
 
 Available on [DockerHub](https://hub.docker.com/r/alandoyle/tt-rss-mysql)
 ```bash
